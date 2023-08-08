@@ -2,10 +2,9 @@ function getComputerChoice() {
     const game = ["Rock", "Paper", "Scissor"];
     return game[Math.floor(Math.random() * game.length)];
 }
-console.log(getComputerChoice());
 
 function rpc_game(playerSelection, computerSelection) {
-    player = playerSelection.toUpperCase(playerSelection.charAt(0))+playerSelection.slice(1)
+    const player = playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1)
     if (player=="Rock") {
         if (computerSelection=="Paper") {
             return "You Lose! Paper beats Rock";
@@ -44,4 +43,32 @@ function rpc_game(playerSelection, computerSelection) {
     }
 }
 
-let playerChoice = prompt("Rock, Paper or Scissors: Choose One");
+let noOfGames = parseInt(prompt("How many matches would you like to play?"));
+let scorePlayer = scoreComputer = 0;
+function game(matches) {
+    for (i=0; i<matches; i++) {
+        let playerChoice = prompt("Rock, Paper or Scissors: Choose One");
+        let result = rpc_game(playerChoice, getComputerChoice());
+        if (result.search(/win/i) != -1) {
+            scorePlayer++;
+        }
+        else if (result.search(/lose/i) != -1) {
+            scoreComputer++;
+        }
+        else {
+            i--;
+        }
+        console.log(result);
+    }
+    if (scorePlayer>scoreComputer) {
+        return "You win. Your score is " + scorePlayer + ".";
+    }
+    else if (scorePlayer<scoreComputer) {
+        return "You lose. The computers score is " + scoreComputer + ".";
+    }
+    else {
+        return "It is a draw."
+    }
+}
+
+console.log(game(noOfGames));
