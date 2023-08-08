@@ -5,7 +5,8 @@ function getComputerChoice() {
 console.log(getComputerChoice());
 
 function rpc_game(playerSelection, computerSelection) {
-    if (playerSelection=="Rock") {
+    player = playerSelection.toUpperCase(playerSelection.charAt(0))+playerSelection.slice(1)
+    if (player=="Rock") {
         if (computerSelection=="Paper") {
             return "You Lose! Paper beats Rock";
         }
@@ -16,7 +17,7 @@ function rpc_game(playerSelection, computerSelection) {
             return "It is a Draw, you might want to try again";
         }
     }
-    else if (playerSelection=="Paper") {
+    else if (player=="Paper") {
         if (computerSelection=="Paper") {
             return "It is a Draw, you might want to try again";
         }
@@ -27,7 +28,7 @@ function rpc_game(playerSelection, computerSelection) {
             return "You Win! Paper beats Rock";
         }
     }
-    else if (playerSelection=="Scissors") {
+    else if (player=="Scissors") {
         if (computerSelection=="Paper") {
             return "You Win! Scissors beats Paper";
         }
